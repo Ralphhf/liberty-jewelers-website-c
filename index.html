@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberty Jewelers - Where Tampa's Love Stories Shine Forever</title>
+    <meta name="description" content="Custom engagement rings, jewelry repair, and timeless treasures in Tampa. 20 years of crafting love stories that shine forever.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #faf9f7;
+            --bg-secondary: #f5f4f2;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --accent: #8b7355;
+            --gold: #d4af37;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        nav.visible {
+            transform: translateY(0);
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Opening Scene */
+        .opening-scene {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .opening-scene::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1745030174513-6b08bc58ca1a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MzgyMjB8MHwxfHNlYXJjaHwxMDB8fGx1eHVyeSUyMGRpYW1vbmQlMjBqZXdlbHJ5JTIwZGFyayUyMGJhY2tncm91bmQlMjBlbGVnYW50fGVufDB8MHx8fDE3NjQ4MjU1MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080') center/cover no-repeat;
+            filter: brightness(0.4);
+            z-index: -1;
+        }
+
+        .opening-content {
+            text-align: center;
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .opening-content h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            margin-bottom: 1rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .opening-content p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Content Sections */
+        .section {
+            padding: clamp(4rem, 10vw, 8rem) 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-wide {
+            max-width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .headline {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+
+        .subheadline {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        /* The Problem Section */
+        .problem-section {
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .problem-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Meet the Hero */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(3rem, 5vw, 6rem);
+            align-items: center;
+        }
+
+        .hero-text h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Transformation Timeline */
+        .transformation-section {
+            background: var(--bg-secondary);
+            padding: clamp(4rem, 10vw, 8rem) 0;
+        }
+
+        .timeline-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 5%;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .timeline-card {
+            flex: 0 0 350px;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px var(--shadow);
+            scroll-snap-align: start;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .timeline-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .timeline-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Testimonials */
+        .testimonial-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: clamp(3rem, 5vw, 5rem);
+            border-radius: 12px;
+            box-shadow: 0 20px 40px var(--shadow);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 8rem;
+            color: var(--gold);
+            opacity: 0.2;
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .testimonial-text {
+            font-size: clamp(1.3rem, 2vw, 1.8rem);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Services */
+        .services-section {
+            background: var(--bg-secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Gallery */
+        .gallery-section {
+            padding: clamp(4rem, 10vw, 8rem) 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-credits {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--text-primary);
+            color: var(--white);
+            text-align: center;
+            padding: clamp(6rem, 10vw, 10rem) 5%;
+        }
+
+        .contact-section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 2rem;
+        }
+
+        .contact-section p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        #contactForm {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        #contactForm input,
+        #contactForm textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.2rem;
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        #contactForm input::placeholder,
+        #contactForm textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        #contactForm textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        #contactForm button {
+            background: var(--gold);
+            color: var(--text-primary);
+            border: none;
+            padding: 1.5rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: center;
+        }
+
+        #contactForm button:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+        }
+
+        #contactForm button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #formStatus {
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info div {
+            text-align: center;
+        }
+
+        .contact-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline-card {
+                flex: 0 0 300px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 2rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="loading-text">Liberty Jewelers</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Liberty Jewelers</a>
+            <ul class="nav-links">
+                <li><a href="#problem">Our Story</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <span class="close-menu" id="closeMenu">×</span>
+        <a href="#problem" onclick="closeMobileMenu()">Our Story</a>
+        <a href="#services" onclick="closeMobileMenu()">Services</a>
+        <a href="#gallery" onclick="closeMobileMenu()">Gallery</a>
+        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    </div>
+
+    <!-- Opening Scene -->
+    <section id="home" class="opening-scene">
+        <div class="opening-content fade-in">
+            <h1>Liberty Jewelers</h1>
+            <p>Every piece tells a story. Every story deserves to shine.</p>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <path d="M15 20L8 13L9.4 11.6L15 17.2L20.6 11.6L22 13L15 20Z" fill="white"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- The Problem -->
+    <section id="problem" class="section problem-section fade-in">
+        <div class="problem-content">
+            <h2 class="headline">You deserve better than mass-produced jewelry that looks like everyone else's.</h2>
+            <p class="subheadline">Your love story is unique. Your grandmother's ring holds irreplaceable memories. That watch was your father's pride. These aren't just accessories—they're chapters of your life, waiting to be preserved, restored, and celebrated.</p>
+        </div>
+    </section>
+
+    <!-- Meet the Hero -->
+    <section class="section fade-in">
+        <div class="hero-section">
+            <div class="hero-text">
+                <h2>Two Decades of Tampa Trust</h2>
+                <p>In 1957 W M.L.K. Jr Blvd, there's a place where time slows down. Where Ralph Farah has spent 20 years listening to love stories, family histories, and dreams yet to unfold.</p>
+                <p>We started Liberty Jewelers because we believed Tampa deserved a jeweler who understood that behind every piece is a person, a moment, a memory worth honoring.</p>
+                <p>From the nervous young man designing the perfect engagement ring to the grandmother entrusting us with her heirloom pearls—we've been privileged to be part of thousands of Tampa families' most precious moments.</p>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1534875502980-5114a191aca7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MzgyMjB8MHwxfHNlYXJjaHw1NHx8ZGlhbW9uZCUyMGVuZ2FnZW1lbnQlMjByaW5nJTIwY2xvc2V1cCUyMGJva2VofGVufDB8MHx8fDE3NjQ4MjU1Mzd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Diamond engagement ring">
+            </div>
+        </div>
+    </section>
+
+    <!-- The Transformation -->
+    <section class="transformation-section fade-in">
+        <div class="section">
+            <h2 class="headline" style="text-align: center; margin-bottom: 3rem;">Your Journey With Us</h2>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline-card">
+                <h3>01. The Conversation</h3>
+                <p>You walk in with an idea, a broken clasp, or a dream. We listen. Really listen. Over coffee, we understand not just what you need, but why it matters.</p>
+            </div>
+            <div class="timeline-card">
+                <h3>02. The Vision</h3>
+                <p>Whether designing from scratch or restoring a treasure, we sketch, discuss, and refine until your vision becomes clear. No rush. No pressure. Just possibilities.</p>
+            </div>
+            <div class="timeline-card">
+                <h3>03. The Craft</h3>
+                <p>Our master jewelers bring decades of skill to every piece. Each setting, each repair, each restoration is handled with the care we'd give our own family's treasures.</p>
+            </div>
+            <div class="timeline-card">
+                <h3>04. The Moment</h3>
+                <p>The reveal. The smile. The tears of joy. After 20 years, this never gets old. Your satisfaction is our masterpiece.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof/Testimonials -->
+    <section class="section testimonial-section fade-in">
+        <h2 class="headline" style="text-align: center; margin-bottom: 4rem;">Stories From Our Tampa Family</h2>
+        
+        <div class="testimonial-card fade-in">
+            <p class="testimonial-text">They resized my grandmother's ring perfectly and even cleaned it for free. The staff treated a family heirloom with such care and respect. I won't go anywhere else!</p>
+            <p class="testimonial-author">— Maria Rodriguez</p>
+        </div>
+        
+        <div class="testimonial-card fade-in">
+            <p class="testimonial-text">Worked with them to design my fiancée's dream engagement ring. They stayed within my budget and created something more beautiful than I imagined possible.</p>
+            <p class="testimonial-author">— James Mitchell</p>
+        </div>
+        
+        <div class="testimonial-card fade-in">
+            <p class="testimonial-text">Been coming here for years for watch repairs and jewelry cleaning. Fair prices, quick turnaround, and they always remember my name. Real neighborhood gem.</p>
+            <p class="testimonial-author">— Deborah Chen</p>
+        </div>
+    </section>
+
+    <!-- Services as Solutions -->
+    <section id="services" class="services-section section fade-in">
+        <h2 class="headline" style="text-align: center;">Every Service, A Solution</h2>
+        <p class="subheadline" style="text-align: center; margin-bottom: 3rem;">Because your jewelry should work as beautifully as the day you fell in love with it.</p>
+        
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">💍</div>
+                <h3>Custom Engagement Ring Design</h3>
+                <p>Your love story is one-of-a-kind. Your ring should be too. From sketch to sparkle, we create the ring that tells your unique story.</p>
+            </div>
+            
+            <div class="service-card fade-in">
+                <div class="service-icon">🔧</div>
+                <h3>Professional Jewelry Repair</h3>
+                <p>Broken chains, loose stones, worn prongs—we restore your treasures to their original glory, often while you wait.</p>
+            </div>
+            
+            <div class="service-card fade-in">
+                <div class="service-icon">⌚</div>
+                <h3>Watch Battery & Servicing</h3>
+                <p>Keep time with the moments that matter. Quick battery replacements and expert servicing for timepieces of every generation.</p>
+            </div>
+            
+            <div class="service-card fade-in">
+                <div class="service-icon">📋</div>
+                <h3>Jewelry Appraisals</h3>
+                <p>Protect what you cherish. Professional documentation for insurance, estates, or simply knowing the true value of your treasures.</p>
+            </div>
+            
+            <div class="service-card fade-in">
+                <div class="service-icon">📿</div>
+                <h3>Pearl Restringing</h3>
+                <p>Those pearls have seen decades of celebrations. We'll ensure they're ready for decades more with expert restringing and restoration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery-section section-wide fade-in">
+        <div class="section">
+            <h2 class="headline" style="text-align: center;">Glimpses of Brilliance</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1534875502980-5114a191aca7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MzgyMjB8MHwxfHNlYXJjaHw1NHx8ZGlhbW9uZCUyMGVuZ2FnZW1lbnQlMjByaW5nJTIwY2xvc2V1cCUyMGJva2VofGVufDB8MHx8fDE3NjQ4MjU1Mzd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Diamond engagement ring">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1663079899584-64acea4d6858?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MzgyMjB8MHwxfHNlYXJjaHwyfHxnb2xkJTIwbmVja2xhY2UlMjBqZXdlbHJ5JTIwcGhvdG9ncmFwaHl8ZW58MHwwfHx8MTc2NDgyNTUzN3ww&ixlib=rb-4.1.0&q=80&w=1080" alt="Gold necklace">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1705572835631-fe7ec87b6ad2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MzgyMjB8MHwxfHNlYXJjaHw5NXx8bHV4dXJ5JTIwd2F0Y2glMjB0aW1lcGllY2V8ZW58MHwwfHx8MTc2NDgyNTUzOHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Luxury watch">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1657869208369-6d6e7f5b7013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MzgyMjB8MHwxfHNlYXJjaHw4M3x8cGVhcmwlMjBlYXJyaW5ncyUyMGVsZWdhbnR8ZW58MHwwfHx8MTc2NDgyNTUzOXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Pearl earrings">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1556003267-b07b51684c5b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MzgyMjB8MHwxfHNlYXJjaHw1N3x8Z2Vtc3RvbmUlMjByaW5nJTIwc2FwcGhpcmUlMjBydWJ5fGVufDB8MHx8fDE3NjQ4MjU1Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Gemstone ring">
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="https://images.unsplash.com/photo-1667138410703-f43ce0ce7542?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MzgyMjB8MHwxfHNlYXJjaHwxMTF8fGpld2VscnklMjBkaXNwbGF5JTIwdmVsdmV0JTIwbHV4dXJ5fGVufDB8MHx8fDE3NjQ4MjU1NDB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Jewelry display">
+            </div>
+        </div>
+        <p class="photo-credits">
+            Photo credits: Lauren Richmond, Mahbod Akhzami, Duong Ngan, sheilabox, Alex Hudson, PerfectMirror via Unsplash
+        </p>
+    </section>
+
+    <!-- The Invitation -->
+    <section id="contact" class="contact-section fade-in">
+        <h2>Ready to Write Your Next Chapter?</h2>
+        <p>Let's create something beautiful together.</p>
+        
+        <form id="contactForm">
+            <input type="hidden" name="websiteId" value="a3d57c0ab4314e2bc847ea26855487b3">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+            <input type="tel" name="phone" placeholder="Your phone">
+            <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+            <button type="submit">Start the Conversation</button>
+            <div id="formStatus"></div>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <div>
+                    <h4>Visit Us</h4>
+                    <p>1957 W M.L.K. Jr Blvd<br>Tampa, FL 33607</p>
+                </div>
+                <div>
+                    <h4>Call Us</h4>
+                    <p>631-710-8938</p>
+                </div>
+                <div>
+                    <h4>Email Us</h4>
+                    <p>ralph_farah_2001@hotmail.com</p>
+                </div>
+            </div>
+            <p style="color: var(--text-secondary); margin-top: 2rem;">© 2024 Liberty Jewelers. Where Tampa's Love Stories Shine Forever.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loading').classList.add('fade-out');
+            }, 1000);
+        });
+
+        // Navigation Show/Hide on Scroll
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Mobile Menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+        }
+
+        // Intersection Observer for Fade In Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact Form Handler
+        document.getElementById('contactForm').addEventListener('submit', async e => {
+            e.preventDefault();
+            const b = e.target.querySelector('button');
+            b.disabled = true;
+            b.textContent = 'Sending...';
+            try {
+                const r = await fetch('https://no-website-finder.onrender.com/api/form-submit', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        websiteId: e.target.querySelector('[name=websiteId]').value,
+                        name: e.target.querySelector('[name=name]').value,
+                        email: e.target.querySelector('[name=email]').value,
+                        phone: e.target.querySelector('[name=phone]').value,
+                        message: e.target.querySelector('[name=message]').value
+                    })
+                });
+                const d = await r.json();
+                document.getElementById('formStatus').textContent = d.success ? '✓ Sent!' : '✗ Error';
+                document.getElementById('formStatus').style.color = d.success ? '#22c55e' : '#ef4444';
+                if (d.success) {
+                    e.target.reset();
+                }
+            } catch(err) {
+                document.getElementById('formStatus').textContent = '✗ Failed';
+                document.getElementById('formStatus').style.color = '#ef4444';
+            }
+            b.disabled = false;
+            b.textContent = 'Start the Conversation';
+        });
+
+        // Parallax Effect for Hero Image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.opening-scene::before');
+            const speed = 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * speed}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
